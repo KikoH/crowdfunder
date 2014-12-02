@@ -1,0 +1,12 @@
+<h1><%= @project.name %> Project</h1>
+
+	<p>
+		Name: <%= @project.name %>
+		<br>Description: <%= @project.description %>
+		<br>Start Date: <%= @project.pretty_start_date %>
+		<br>End Date: <%= @project.pretty_end_date %>
+		<br>Funding Goal: <%= @project.funding_goal %>
+	</p>
+
+<%= link_to 'Delete', project_path(@project), method: :delete %> | 
+<%= link_to 'Edit ', edit_project_path(@project) %>
