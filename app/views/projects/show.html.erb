@@ -8,5 +8,11 @@
 		<br>Funding Goal: <%= @project.funding_goal %>
 	</p>
 
+	<h1>Rewards</h1>
+	<% @project.rewards.all.each do |reward| %>
+	<p> Reward tier: <%= reward.price_tier %> </p>
+	<p> Description: <%= reward.description %> </p>
+	<% end %>
+
 <%= link_to 'Delete', project_path(@project), method: :delete %> | 
 <%= link_to 'Edit ', edit_project_path(@project) %>

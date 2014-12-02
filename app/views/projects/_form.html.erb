@@ -1,8 +1,25 @@
 <%= form_for @project do |f| %>
-	<%= f.text_field :name, placeholder: 'Name' %>
-	<br><%= f.text_area :description, placeholder: 'Description' %>
-	<br><%= f.date_select :start_date %>
-	<br><%= f.date_select :end_date %>
-	<br><%= f.number_field :funding_goal, placeholder: 'Funding Goal' %>
-	<br><%= f.submit %>	
+	<br><%= f.label :name %>
+	<%= f.text_field :name %>
+	<br><%= f.label :description %>
+	<%= f.text_area :description %>
+	<br><%= f.label :start_date %>
+	<%= f.date_select :start_date %>
+	<br><%= f.label :end_date %>
+	<%= f.date_select :end_date %>
+	<br><%= f.label :funding_goal %>
+	<%= f.number_field :funding_goal %>
+	<br>	
+
+<h1>Rewards</h1>
+
+	<%= f.fields_for :rewards do |reward_field| %>
+		<div>
+			<%= reward_field.label :price_tier %>
+			<%= reward_field.number_field :price_tier %>
+			<br><%= reward_field.label :description %>
+			<%= reward_field.text_field :description%>
+		</div>
+	<% end %>
+	<%= f.submit %>
 <% end %>
