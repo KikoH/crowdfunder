@@ -1,25 +1,26 @@
 <%= form_for @project do |f| %>
-	<br><%= f.label :name %>
-	<%= f.text_field :name %>
-	<br><%= f.label :description %>
-	<%= f.text_area :description %>
-	<br><%= f.label :start_date %>
-	<%= f.date_select :start_date %>
-	<br><%= f.label :end_date %>
-	<%= f.date_select :end_date %>
-	<br><%= f.label :funding_goal %>
-	<%= f.number_field :funding_goal %>
-	<br>	
+	<div class="main_form">
+		<br><%= f.label :name %>
+		<%= f.text_field :name %>
+		<br><%= f.label :description %>
+		<%= f.text_area :description %>
+		<br><%= f.label :start_date %>
+		<%= f.date_select :start_date %>
+		<br><%= f.label :end_date %>
+		<%= f.date_select :end_date %>
+		<br><%= f.label :funding_goal %>
+		<%= f.number_field :funding_goal %>
+		<br>	
+	</div>
 
 <h1>Rewards</h1>
-
+<div class="rewards_form">
 	<%= f.fields_for :rewards do |reward_field| %>
-		<div>
-			<%= reward_field.label :price_tier %>
-			<%= reward_field.number_field :price_tier %>
-			<br><%= reward_field.label :description %>
-			<%= reward_field.text_field :description%>
-		</div>
+		<%= render 'reward_fields', f: reward_field %>
 	<% end %>
+	<%= link_to_add_association "add reward", f, :rewards %>
+</div>
+
 	<%= f.submit %>
 <% end %>
+

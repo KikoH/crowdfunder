@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
 	# has_many :pledges, through: :rewards
 	has_many :pledges
 
-	accepts_nested_attributes_for :rewards
+	accepts_nested_attributes_for :rewards, reject_if: :all_blank, allow_destroy: true
 
 
 	def pretty_start_date
