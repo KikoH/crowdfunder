@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
+  
+  
   #ROLES = %i[backer owner admin]
 
 	#def roles=(roles)
