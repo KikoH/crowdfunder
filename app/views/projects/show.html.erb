@@ -11,9 +11,11 @@
 	<h1>Rewards</h1>
 	<% @project.rewards.all.each do |reward| %>
 		<div class="panel">
-			<p> Reward tier: <%= reward.price_tier %> </p>
-			<p> Description: <%= reward.description %> </p>
-			<%= link_to "Back Project", pledges_path(reward_id: reward.id), method: :post%>
+			<p>	
+				Reward tier: <%= reward.price_tier %> 
+				<br> Description: <%= reward.description %>
+				<%= link_to "Back Project", pledges_path(reward_id: reward.id), method: :post %>
+			</p>
 		</div>
 	<% end %>
 
