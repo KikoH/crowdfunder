@@ -19,4 +19,12 @@ class Project < ActiveRecord::Base
 	def amount_raised
 		pledges.sum(:contribution)
 	end
+
+	def days_left
+		end_date.day - DateTime.now.day
+	end
+
+	# def is_current_user_backer?
+	# 	pledges.include?(pledges.where(backer_id: current_user.id).first)
+	# end
 end

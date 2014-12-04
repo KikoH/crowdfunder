@@ -7,7 +7,12 @@
 		<br>End Date: <%= @project.pretty_end_date %>
 		<br>Funding Goal: <%= @project.funding_goal %>
 		<br>Raised so far: <div id="amount_raised"> <%= @project.amount_raised %> </div>
+		<br>Days Left: <%= @project.days_left %>
 	</p>
+
+	<% if @project.pledges.include?(@project.pledges.where(backer_id: current_user.id).first) %>
+		<h3>You are a backer!!!</h3> 
+	<% end %>
 
 	<h1>Rewards</h1>
 	<% @project.rewards.all.each do |reward| %>

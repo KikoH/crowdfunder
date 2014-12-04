@@ -3,9 +3,10 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on("ready page:load", function(){
 
-	$(".backed-project").on("click", function(event){
-		// event.stopImmediatePropogation();
-		event.preventDefault();
+	$("a.backed-project").on("click", function(event){
+		// event.stopImmediatePropagation();
+		// event.preventDefault();
+		
 	});
 
 });
