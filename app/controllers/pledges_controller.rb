@@ -1,14 +1,19 @@
 class PledgesController < ApplicationController
   def create
-  	
   	@pledge = Pledge.new(pledge_params)
   	@pledge.backer_id = current_user.id
+  	@project = @pledge.project
 
-  	if @pledge.save
-  		redirect_to projects_path
-  	else
-  		redirect projects_path
+  	respond_to do |format|
+	  	if @pledge.save
+	  		format.js
+	  		format.html {redirect_to projects_path}
+	  	else
+	  		format.html {redirect projects_path}
+	  	end
+  		
   	end
+
 
   end
 

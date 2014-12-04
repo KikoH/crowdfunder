@@ -139,7 +139,6 @@ DEPENDENCIES
   binding_of_caller
   cancancan (~> 1.9)
   cocoon
-  coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
   pg

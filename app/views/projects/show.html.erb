@@ -6,6 +6,7 @@
 		<br>Start Date: <%= @project.pretty_start_date %>
 		<br>End Date: <%= @project.pretty_end_date %>
 		<br>Funding Goal: <%= @project.funding_goal %>
+		<br>Raised so far: <div id="amount_raised"> <%= @project.amount_raised %> </div>
 	</p>
 
 	<h1>Rewards</h1>
@@ -14,7 +15,7 @@
 			<p>	
 				Reward tier: <%= reward.price_tier %> 
 				<br> Description: <%= reward.description %>
-				<%= link_to "Back Project", pledges_path(:pledge => {contribution: reward.price_tier,  reward_id: reward.id, project_id: @project.id}), method: :post %>
+				<%= link_to "Back Project", pledges_path(:pledge => {contribution: reward.price_tier,  reward_id: reward.id, project_id: @project.id}), class: "backed-project", method: :post, remote: true %>
 			</p>
 		</div>
 	<% end %>

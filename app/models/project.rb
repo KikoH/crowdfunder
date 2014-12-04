@@ -15,4 +15,8 @@ class Project < ActiveRecord::Base
 	def pretty_end_date
 		end_date.strftime("%b %d, %Y")
 	end
+
+	def amount_raised
+		pledges.sum(:contribution)
+	end
 end
