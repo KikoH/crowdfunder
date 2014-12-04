@@ -14,7 +14,7 @@
 			<p>	
 				Reward tier: <%= reward.price_tier %> 
 				<br> Description: <%= reward.description %>
-				<%= link_to "Back Project", pledges_path(reward_id: reward.id), method: :post %>
+				<%= link_to "Back Project", pledges_path(:pledge => {contribution: reward.price_tier,  reward_id: reward.id, project_id: @project.id}), method: :post %>
 			</p>
 		</div>
 	<% end %>

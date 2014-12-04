@@ -30,6 +30,13 @@ gem 'spring',        group: :development
 gem 'cocoon'
 
 gem 'sorcery'
+
+gem 'cancancan', '~> 1.9'
+
+gem 'better_errors'
+gem 'binding_of_caller'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

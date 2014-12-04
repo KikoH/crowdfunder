@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	skip_before_filter :require_login, only: [:index, :new, :create]
+	#load_and_authorize_resource
 
 	def new
 		@user = User.new

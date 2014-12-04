@@ -1,17 +1,13 @@
 class PledgesController < ApplicationController
-  def new
-  	@pledge = Pledge.new	
-  end
-
   def create
+  	
   	@pledge = Pledge.new(pledge_params)
-  	# @reward = Reward.find(params[:reward_id])
-  	# @pledge = Pledge.new(pledge_params)
-  	# @reward.build_pledges
+  	@pledge.backer_id = current_user.id
+
   	if @pledge.save
   		redirect_to projects_path
   	else
-  		render "new"
+  		redirect projects_path
   	end
 
   end
@@ -22,7 +18,9 @@ class PledgesController < ApplicationController
   end
 
   private
+  
   def pledge_params
-  	params.require(:pledge).permit(:reward_id)
+  	pledge_params = params.require(:pledge).permit(:contribution, :reward_id, :project_id)
   end
+
 end
