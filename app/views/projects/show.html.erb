@@ -1,8 +1,9 @@
 <h1><%= @project.name %> Project</h1>
 
 	<p>
-		Name: <%= @project.name %>
+		Name: <%= @project.name %> | By: <%= @project.owner.email %>
 		<br>Description: <%= @project.description %>
+		<br> Tags: <%= raw @project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 		<br>Start Date: <%= @project.pretty_start_date %>
 		<br>End Date: <%= @project.pretty_end_date %>
 		<br>Funding Goal: <%= @project.funding_goal %>

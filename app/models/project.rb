@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
 	has_many :pledges
 
 	accepts_nested_attributes_for :rewards, reject_if: :all_blank, allow_destroy: true
-
+	acts_as_taggable
 
 	def pretty_start_date
 		start_date.strftime("%b %d, %Y")

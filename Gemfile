@@ -32,9 +32,11 @@ gem 'cocoon'
 gem 'sorcery'
 
 gem 'cancancan', '~> 1.9'
-
+gem 'awesome_print'
+gem 'pry-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
+gem 'acts-as-taggable-on'
 
 
 # Use ActiveModel has_secure_password

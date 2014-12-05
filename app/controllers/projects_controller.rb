@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
 	#load_and_authorize_resource
 
 	def index
-		@projects = Project.all
+		if params[:tag]
+			@projects = Project.tagged_with(params[:tag])
+		else	
+			@projects = Project.all
+		end
+
 	end
 
 	def show
@@ -16,6 +21,7 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
+		@project.owner = current_user
 
 		if @project.save
 			redirect_to project_path(@project)
@@ -46,7 +52,9 @@ class ProjectsController < ApplicationController
 	private
 
 	def project_params
-		params.require(:project).permit(:name, :description, :start_date, :end_date, :funding_goal, rewards_attributes: [:price_tier, :description, :_destroy])
+		params.require(:project).permit(:tag_list, :name, :description, :start_date, :end_date, :funding_goal, rewards_attributes: [:price_tier, :description, :_destroy])
 	end
+
+
 
 end
