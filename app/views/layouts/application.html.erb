@@ -8,26 +8,48 @@
 </head>
 <body>
 
-<div id="nav">
-	<%= link_to "Home", projects_path %> | 
-	<%= link_to "New Project", new_project_path %> |
-  
-  <% if current_user %>
-    <%= link_to "My Profile", user_path(current_user.id) %> |
-    <%= link_to "Logout", :logout, method: :post %>
-  <% else %>
-    <%= link_to "Register", new_user_path %> |
-    <%= link_to "Login", :login %>
-  <% end %>
-</div>
-<div>
-  <p id="notice"><%= flash[:notice] %></p>
-  <p id="alert"><%= flash[:alert] %></p>
-</div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Crowdfunder</a>
+      </div>
+      <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-6" aria-expanded="false" style="height: 1px;">
+        <ul class="nav navbar-nav pushleft">
+          <li class="active">
+            <%= link_to "Home", projects_path %>
+          </li>
+          <li>
+            <%= link_to "New Project", new_project_path %>
+          </li>
+        </ul>
 
-<hr>
+        <ul class="nav navbar-nav pushright">
+          <% if current_user %>
+          <li>
+            <%= link_to "My Profile", user_path(current_user.id) %>
+          </li>
+          <li>
+            <%= link_to "Logout", :logout, method: :post %>
+          </li>
+          <% else %>
+          <li>
+            <%= link_to "Register", new_user_path %>
+          </li>
+          <li>
+            <%= link_to "Login", :login %>
+          </li>
+          <% end %>  </div>
+        </ul>
+      </div>
+    </nav>
 
-<%= yield %>
+    <%= yield %>
 
-</body>
-</html>
+  </body>
+  </html>
+
