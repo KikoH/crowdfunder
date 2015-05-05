@@ -1,16 +1,29 @@
 <h1>All Projects</h1>
 <h3>Tags by Popularity</h3>
 <div id="tag_cloud">
-  <% tag_cloud Project.tag_counts, %w{s m l} do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
+	<% tag_cloud Project.tag_counts, %w{s m l} do |tag, css_class| %>
+	<%= link_to tag.name, tag_path(tag.name), class: css_class %>
+	<% end %>
 </div>
-<% @projects.each do |project| %>
-	<p>Name: <%= link_to project.name, project_path(project) %>
-			<br>Description: <%= project.description %>
-      <br> Tags: <%= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-			<br>Start Date: <%= project.pretty_start_date %>
-			<br>End Date: <%= project.pretty_end_date %>
-			<br>Funding Goal: <%= project.funding_goal %>
-	</p>
-<% end %>
+
+<div class="container">
+	<div class="row">
+		<% @projects.each do |project| %>
+		<div class="col-sm-6 col-md-4">
+			<div class="thumbnail">
+				<img src="https://ksr-ugc.imgix.net/projects/1776443/photo-original.jpg?v=1428102214&w=560&h=420&fit=crop&auto=format&q=92&s=cc9d8d765ee491fcd1f2f9abeba7c744" alt="...">
+				<div class="caption">
+					<h3> <%= link_to project.name, project_path(project) %> </h3>
+					<p><%= project.description %></p>
+					<!-- <br>Tags: <%#= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %> -->
+					<br>Start Date: <%= project.pretty_start_date %>
+					<br>End Date: <%= project.pretty_end_date %>
+					<br>Days left: <%= project.days_left %>
+					<br>Funding Goal: <%= project.funding_goal %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+
