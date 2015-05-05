@@ -30,6 +30,9 @@ GEM
     acts-as-taggable-on (3.4.2)
       activerecord (>= 3.2, < 5)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (5.1.11)
+      execjs
+      json
     awesome_print (1.2.0)
     bcrypt (3.1.9)
     better_errors (2.0.0)
@@ -38,6 +41,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.4.1)
+      autoprefixer-rails (>= 5.0.0.1)
+      sass (>= 3.2.19)
     builder (3.2.2)
     cancancan (1.9.2)
     cocoon (1.2.6)
@@ -150,6 +156,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  bootstrap-sass (~> 3.3.4)
   cancancan (~> 1.9)
   cocoon
   jbuilder (~> 2.0)
