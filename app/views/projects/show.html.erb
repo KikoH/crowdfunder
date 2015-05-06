@@ -1,30 +1,57 @@
-<h1><%= @project.name %> Project</h1>
-
-	<p>
-		Name: <%= @project.name %> | By: <%= @project.owner.email %>
-		<br>Description: <%= @project.description %>
-		<br> Tags: <%= raw @project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-		<br>Start Date: <%= @project.pretty_start_date %>
-		<br>End Date: <%= @project.pretty_end_date %>
-		<br>Funding Goal: <%= @project.funding_goal %>
-		<br>Raised so far: <div id="amount_raised"> <%= @project.amount_raised %> </div>
-		<br>Days Left: <%= @project.days_left %>
-	</p>
-
-	<% if @project.pledges.include?(@project.pledges.where(backer_id: current_user.id).first) %>
-		<h3>You are a backer!!!</h3> 
-	<% end %>
-
-	<h1>Rewards</h1>
-	<% @project.rewards.all.each do |reward| %>
-		<div class="panel">
-			<p>	
-				Reward tier: <%= reward.price_tier %> 
-				<br> Description: <%= reward.description %>
-				<%= link_to "Back Project", pledges_path(:pledge => {contribution: reward.price_tier,  reward_id: reward.id, project_id: @project.id}), class: "backed-project", method: :post, remote: true %>
-			</p>
-		</div>
-	<% end %>
-
+<% if current_user.id == @project.owner_id %>
 <%= link_to 'Delete', project_path(@project), method: :delete %> | 
 <%= link_to 'Edit ', edit_project_path(@project) %>
+<% elsif @project.pledges.include?(@project.pledges.where(backer_id: current_user.id).first) %>
+<h3>You are a backer!!!</h3> 
+<% end %>
+
+<div class="container">
+	<div class="thumbnail">
+		<img src="<%= @project.url %>" alt="...">
+		<div class="caption text-center">
+			<h3> <%= @project.name %> by: <%= @project.owner.email %></h3>
+			<p><%= @project.description %></p>
+			<!-- <br>Tags: <%#= raw project.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %> -->
+			<br>Start Date: <%= @project.pretty_start_date %>
+			<br>End Date: <%= @project.pretty_end_date %>
+			<br>Days left: <%= @project.days_left %>
+			<br>Funding Goal: <%= @project.funding_goal %>
+			<br>Raised so far: <div id="amount_raised"> <%= @project.amount_raised %> </div>
+			<br>Days Left: <%= @project.days_left %>
+		</div>
+	</div>
+</div>
+
+
+<div class="bs-example" data-example-id="striped-table">
+	<h1>Rewards</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Reward tier</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @project.rewards.all.each do |reward| %>
+			<tr>
+				<td><%= reward.price_tier %> </td>
+				<td><%= reward.description %></td>
+				<% if current_user.id == @project.owner_id %>
+				<td>Your project</td>
+				<% else %>
+				<% if @project.pledges.include?(@project.pledges.where(backer_id: current_user.id).first) %>
+				<td> <p>You already backed this project</p></td>
+				<% else %>
+				<td><%= link_to "Back Project", pledges_path(:pledge => {contribution: reward.price_tier,  reward_id: reward.id, project_id: @project.id}), class: "btn btn-success", method: :post, remote: true %></td>
+				<% end %>
+			</tr>
+			<% end %>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+
+
+
